@@ -16,6 +16,13 @@
                         </li>
 
 
+                            <li>
+                            <a href="{{ route('home.view.equipment')}}""><i class="fa fa-wrench fa-fw"></i> Equipment</a> 
+                            </li>
+
+                            <li>
+                            <a href="{{ route('home.view.location')}}""><i class="fa fa-location-arrow fa-fw"></i> Locations</a> 
+                            </li>
                             @if(auth()->user()->hasRole('admin'))
 
                             <li>
