@@ -29,7 +29,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.home');
+
+        $e = Equipment::all();
+        $l = Location::all();
+
+        return view('home.home',compact('e','l'));
     }
 
 
@@ -449,7 +453,15 @@ public function   delete_equipment_in_location(Location $location,Equipment  $eq
 
    
 
+        public function print_all_report(){
 
+            $location= Location::all();
+
+            $e= narration::get();
+
+            $pdf = PDF::loadView('layouts.partials.reports', compact('location','e'));
+            return $pdf->download('full_report.pdf');
+            }
 
 
 

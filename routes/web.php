@@ -1,5 +1,7 @@
 <?php
 
+use App\Location;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +14,22 @@
 */
 
 Route::get('/', function () {
+
+//     $l = Location::all();
+
+
+
+//  foreach($l as $ll){
+
+//     echo $ll->equipments()->get();
+//  }
+
+    //return $l;
+
+
+
+
+
     return view('welcome');
 });
 
@@ -75,6 +93,9 @@ Route::prefix('home')->group(function () {
 
 
     Route::get('print-report/{location}', 'homeController@print_report')->name('home.print.location');
+
+
+    Route::get('print-all-report', 'homeController@print_all_report')->name('home.print.all.report');
 
 });
 
