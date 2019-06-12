@@ -54,6 +54,7 @@ class HomeController extends Controller
 public function view_equipment()
 {
 $data = Equipment::all();
+
 return view('home.view-equipment',compact('data'));
 }
 
@@ -338,8 +339,14 @@ public function   delete_equipment_in_location(Location $location,Equipment  $eq
     {
 
         $this->validate($request, 
-        ['name' => 'required'],
-        ['name.required' => 'The name of location is required']
+        ['name' => 'required','store_keeper' => 'required','project_manager' => 'required','phone_number' => 'required'],
+        [
+            'name.required' => 'The name of location is required',
+            'store_keeper.required' => 'Store Keeper is required',
+            'project_manager.required' => 'Project Manager is required',
+            'phone_number.required' => 'Phone Number is required',
+        ]
+  
         );
 
 
@@ -349,6 +356,9 @@ public function   delete_equipment_in_location(Location $location,Equipment  $eq
     $p = location::create([
         'name' => $request->name,
         'slug' => str_slug($request->name),
+        'store_keeper' => $request->store_keeper,
+        'project_manager' => $request->project_manager,
+        'phone_number' => $request->phone_number,
     ]);   
     return redirect('home/view-location');
     }
@@ -360,6 +370,35 @@ public function   delete_equipment_in_location(Location $location,Equipment  $eq
     return view('home/edit-location',compact('location'));
     }
 
+
+    public function update_location(Request $request,Location $location)
+    {
+    $this->validate($request, [
+        'name' => 'required',
+        'store_keeper' => 'required',
+        'project_manager' => 'required',
+        'phone_number' => 'required'
+        ]);
+
+
+        $location->name = $request->name;
+        $location->slug = str_slug($request->name);
+        $location->store_keeper = $request->store_keeper;
+        $location->project_manager = $request->project_manager;
+        $location->phone_number = $request->phone_number;
+        $location->save();
+
+        $request->session()->flash('message.content', 'location was successfully updated!');
+        $request->session()->flash('message.level', 'success');
+
+    return redirect('home/view-location');
+    }
+
+
+    public function delete_location(Location $location){
+    $location->delete();
+    return back();
+    }
 
 
 
@@ -416,29 +455,6 @@ public function   delete_equipment_in_location(Location $location,Equipment  $eq
 
 
 
-    public function update_location(Request $request,Location $location)
-    {
-    $this->validate($request, [
-        'name' => 'required'
-        ]);
-
-
-        $location->name = $request->name;
-        $location->slug = str_slug($request->name);
-        $location->save();
-
-        $request->session()->flash('message.content', 'location was successfully updated!');
-        $request->session()->flash('message.level', 'success');
-
-    return redirect('home/view-location');
-    }
-
-
-    public function delete_location(Location $location){
-    $location->delete();
-    return back();
-    }
-
 
     public function print_report(Location $location){
 
@@ -457,9 +473,15 @@ public function   delete_equipment_in_location(Location $location,Equipment  $eq
 
             $location= Location::all();
 
-            $e= narration::get();
+            $equipment = Equipment::all();
 
-            $pdf = PDF::loadView('layouts.partials.reports', compact('location','e'));
+            //$e= narration::get();
+
+            $pdf = PDF::loadView('layouts.partials.reports', compact(
+                'location',
+                'equipment'
+                //,'e'
+                ));
             return $pdf->download('full_report.pdf');
             }
 

@@ -49,6 +49,25 @@
             </div>
 
 
+            <div class="col-md-12 col-12" style="padding-bottom: 15px">
+                <label>Store Keeper </label>
+                <input type="text"  class="form-control border border-info" name="store_keeper"  value="{{ $location->store_keeper }}"/>
+</div>
+
+<div class="col-md-12 col-12" style="padding-bottom: 15px">
+                <label>Project Manager</label>
+                <input type="text"  class="form-control border border-info" name="project_manager"  value="{{ $location->project_manager}}"/>
+</div>
+
+<div class="col-md-12 col-12" style="padding-bottom: 15px">
+                <label>Phone Number</label>
+                <input type="text"  class="form-control border border-info" name="phone_number"  value="{{ $location->phone_number}}"/>
+</div>
+
+
+
+
+
             
 
 <div class="col-md-12 " style="padding: 15px">

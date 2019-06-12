@@ -18,6 +18,9 @@ class CreateLocationsTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('slug');
+            $table->string('store_keeper');
+            $table->string('phone_number');
+            $table->string('project_manager');
         });
     }
 

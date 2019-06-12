@@ -40,10 +40,9 @@
 
                   
 <div class="col-md-12 col-12" style="padding-bottom: 15px">
-
-                <label>equipment </label>
+     <label>equipment </label>
                 <input type="text"  class="form-control border border-info" name="name" value=""/>
-            </div>
+  </div>
 
 
             

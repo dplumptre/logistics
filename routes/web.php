@@ -56,46 +56,46 @@ Route::prefix('home')->group(function () {
 
 
 
-    Route::get('add-location', 'homeController@add_location')->name('home.add.location');
-    Route::get('{location}/edit-location', 'homeController@edit_location')->name('home.edit.location');
-    Route::put('/{location}/update-location', 'homeController@update_location')->name('home.update.location');
-    Route::post('store-location', 'homeController@store_location')->name('home.store.location');
-    Route::get('view-location', 'homeController@view_location')->name('home.view.location');
-    Route::get('{location}/delete-location', 'homeController@delete_location')->name('home.delete.location');
+    Route::get('add-location', 'HomeController@add_location')->name('home.add.location');
+    Route::get('{location}/edit-location', 'HomeController@edit_location')->name('home.edit.location');
+    Route::put('/{location}/update-location', 'HomeController@update_location')->name('home.update.location');
+    Route::post('store-location', 'HomeController@store_location')->name('home.store.location');
+    Route::get('view-location', 'HomeController@view_location')->name('home.view.location');
+    Route::get('{location}/delete-location', 'HomeController@delete_location')->name('home.delete.location');
 
 
-    Route::get('view-location/{location}', 'homeController@view_specific_location')->name('home.view.specific.location');
-    Route::post('store-location-spec', 'homeController@store_location_spec')->name('home.store.location.spec');
+    Route::get('view-location/{location}', 'HomeController@view_specific_location')->name('home.view.specific.location');
+    Route::post('store-location-spec', 'HomeController@store_location_spec')->name('home.store.location.spec');
 
 
 
 
     
     // edit equipments in a specific row
-    Route::get('view-location/{location}/{equipment}/edit-equipment-in-location', 'homeController@edit_equipment_in_location')->name('home.edit.equipment.in.location');
-    Route::put('view-location/{location}/{equipment}/update-equipment-in-location', 'homeController@update_equipment_in_location')->name('home.update.equipment.in.location');
+    Route::get('view-location/{location}/{equipment}/edit-equipment-in-location', 'HomeController@edit_equipment_in_location')->name('home.edit.equipment.in.location');
+    Route::put('view-location/{location}/{equipment}/update-equipment-in-location', 'HomeController@update_equipment_in_location')->name('home.update.equipment.in.location');
 // delete equipment
-    Route::get('{location}/{equipment}/delete-equipment-in-location', 'homeController@delete_equipment_in_location')->name('admin.delete.equipment.in.location');
+    Route::get('{location}/{equipment}/delete-equipment-in-location', 'HomeController@delete_equipment_in_location')->name('admin.delete.equipment.in.location');
 
 
     // Transfer page
-    Route::get('transfer/{location}/{equipment}', 'homeController@transfer')->name('home.view.transfer');
-    Route::post('transfer/{location}/{equipment}', 'homeController@transfer_post')->name('home.post.transfer');
+    Route::get('transfer/{location}/{equipment}', 'HomeController@transfer')->name('home.view.transfer');
+    Route::post('transfer/{location}/{equipment}', 'HomeController@transfer_post')->name('home.post.transfer');
 
 
-    Route::get('add-equipment', 'homeController@add_equipment')->name('home.add.equipment');
-    Route::get('{equipment}/edit-equipment', 'homeController@edit_equipment')->name('home.edit.equipment');
-    Route::put('/{equipment}/update-equipment', 'homeController@update_equipment')->name('home.update.equipment');
-    Route::post('store-equipment', 'homeController@store_equipment')->name('home.store.equipment');
-    Route::get('view-equipment', 'homeController@view_equipment')->name('home.view.equipment');
-    Route::get('{equipment}/delete-equipment', 'homeController@delete_equipment')->name('home.delete.equipment');
+    Route::get('add-equipment', 'HomeController@add_equipment')->name('home.add.equipment');
+    Route::get('{equipment}/edit-equipment', 'HomeController@edit_equipment')->name('home.edit.equipment');
+    Route::put('/{equipment}/update-equipment', 'HomeController@update_equipment')->name('home.update.equipment');
+    Route::post('store-equipment', 'HomeController@store_equipment')->name('home.store.equipment');
+    Route::get('view-equipment', 'HomeController@view_equipment')->name('home.view.equipment');
+    Route::get('{equipment}/delete-equipment', 'HomeController@delete_equipment')->name('home.delete.equipment');
 
 
 
-    Route::get('print-report/{location}', 'homeController@print_report')->name('home.print.location');
+    Route::get('print-report/{location}', 'HomeController@print_report')->name('home.print.location');
 
 
-    Route::get('print-all-report', 'homeController@print_all_report')->name('home.print.all.report');
+    Route::get('print-all-report', 'HomeController@print_all_report')->name('home.print.all.report');
 
 });
 

@@ -21,9 +21,14 @@
 
 <div class="row">
                 <div class="col-lg-12">
- 
-  
-
+<div class="alert alert-info" role="alert">
+<p><strong> STORE KEEPER:</strong> </p>
+<p>{{ $data->store_keeper }}</p>
+<p><strong> PROJECT MANAGER:</strong></p>
+<p>{{ $data->project_manager }}</p>
+<p><strong> PHONE NUMBER:</strong></p>
+<p>{{ $data->phone_number }}</p>
+</div>
 
                 @include('layouts.partials.errors')
             </div>
@@ -113,7 +118,7 @@
                 <div class="col-lg-8">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           
+                           Details
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -128,6 +133,7 @@
                             <th class="text-center">Q.G</th>
                             <th class="text-center">Q.B</th>
                             <th class="text-center">Q.D</th>
+                            <th class="text-center">Total</th>
                             <th class="text-center"></th>
                             <th class="text-center"></th>
                                     </tr>
@@ -141,6 +147,7 @@
                                 <td class="text-center">{{ $d->pivot->quantity_good }}</td>
                                 <td class="text-center">{{ $d->pivot->quantity_bad }}</td>
                                 <td class="text-center">{{ $d->pivot->quantity_damaged }}</td>
+                                <td class="text-center">{{ $d->pivot->quantity_good  +  $d->pivot->quantity_bad +  $d->pivot->quantity_damaged }}</td>
 
                                 <td class="text-center">
                                 <a   href="{{ asset('home/view-location/'.$data->id.'/'.$d->id.'/edit-equipment-in-location') }}"><i class="fa fa-edit"></i></a>
@@ -169,12 +176,12 @@
 
 
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
+                    <!-- <div class="panel panel-default">
                         <div class="panel-heading">
                            
-                        </div>
+                        </div> -->
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
+                        <!-- <div class="panel-body">
 
                             
                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -199,12 +206,14 @@
                                 </tbody>
                             </table>                          
                           
-                        </div>
+                        </div> -->
                         <!-- /.panel-body -->
-                    </div>
 
 
         <a  class='btn btn-danger' href="{{ asset('home/print-report/'.$data->id )}}"><i class='fa fa-print'></i> Print Report</a>
+
+                    </div>
+
 
 <br> <br>
 

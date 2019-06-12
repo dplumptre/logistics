@@ -32,18 +32,35 @@
                         <div class="panel-body">
                             
 
-
-                        @include('layouts.partials.errors')
+ @include('layouts.partials.errors')
 
 <form class="form-horizontal" method="POST" action="{{ route('home.store.location')}}">
-                        {{ csrf_field() }}
+{{ csrf_field() }}
 
                   
 <div class="col-md-12 col-12" style="padding-bottom: 15px">
-
-                <label>location </label>
+                <label>Location </label>
                 <input type="text"  class="form-control border border-info" name="name"  value=""/>
-            </div>
+</div>
+
+
+<div class="col-md-12 col-12" style="padding-bottom: 15px">
+                <label>Store Keeper </label>
+                <input type="text"  class="form-control border border-info" name="store_keeper"  value=""/>
+</div>
+
+<div class="col-md-12 col-12" style="padding-bottom: 15px">
+                <label>Project Manager</label>
+                <input type="text"  class="form-control border border-info" name="project_manager"  value=""/>
+</div>
+
+<div class="col-md-12 col-12" style="padding-bottom: 15px">
+                <label>Phone Number</label>
+                <input type="text"  class="form-control border border-info" name="phone_number"  value=""/>
+</div>
+
+
+
 
 
             
