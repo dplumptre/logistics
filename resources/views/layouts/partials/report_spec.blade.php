@@ -6,17 +6,27 @@ use App\Narration;
 
 ?>
 
-
 <style>
+
+body {
+  font-size:13px;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
 }
 
 th, td {
-  padding: 8px;
+  padding: 3px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  font-size:13px;
+}
+
+h2,h3,h4,hr,th,td {
+  color: #272727;
+  /*text-transform:uppercase;*/
 }
 
 tr:hover {background-color:#f5f5f5;}
