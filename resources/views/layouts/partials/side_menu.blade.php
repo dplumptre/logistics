@@ -23,7 +23,7 @@
                             <li>
                             <a href="{{ route('home.view.location')}}""><i class="fa fa-location-arrow fa-fw"></i> Locations</a> 
                             </li>
-                            @if(auth()->user()->hasRole('admin'))
+                            @if( auth()->user()->hasRole('admin')   || auth()->user()->hasRole('super-admin')   )
 
                             <li>
                             <a href="{{ route('admin.all.users')}}""><i class="fa fa-users fa-fw"></i> Users</a>

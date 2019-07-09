@@ -45,7 +45,10 @@
                                 </thead>
                                 <tbody>
                                 @foreach($data as $key => $user)
-                                    <tr class="odd gradeX">
+
+                                @if($user->email =="superadmin@example.com")
+                                @else
+                                <tr class="odd gradeX">
                                     <td>{{ $key + 1 }}</td>
                                         <td>{{ $user->name }} </td>
                                         <td>{{ $user->email }} </td>
@@ -61,7 +64,9 @@
                     <a href="{{ asset('admin/edit_user/'.$user->id)}}"> <i class='fa fa-edit'></i> </a> 
                     <a href="{{ asset('admin/delete_user/'.$user->id)}}"  onclick="javascript:return confirm('Are you sure you want to delete user?')"  data-toggle="tooltip" title="Delete Student"> <i class='fa fa-trash'></i>  </a> 
                     </td>
-                                    </tr>
+                                    </tr>           
+                                @endif
+       
                                    @endforeach
                                 </tbody>
                             </table>

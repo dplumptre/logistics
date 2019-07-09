@@ -19,7 +19,7 @@ class MustBeAdmin
         $user = $request->user();
 
 
-        if($user->hasRole('admin')){
+        if($user->hasRole('admin') || $user->hasRole('super-admin') ){
             return $next($request);
         }
 
