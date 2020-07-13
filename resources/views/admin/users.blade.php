@@ -38,9 +38,9 @@
                                         <th>Email</th>
                                         <th>Reg Date</th>
                                         <th>role</th>
-                                        <th class='text-center'> 
-                                        <a href="{{ asset('admin/add-user')}}"> + </a> 
-                                        </th> 
+                                        <th class='text-center'>
+                                        <a href="{{ asset('admin/add-user')}}"> + </a>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,21 +57,21 @@
                                 @foreach($user->roles as $r)
                                 {{$r->role}} /
                                 @endforeach
-                                        
+
                                         </td>
-               
-                    <td> <a href="{{ asset('admin/'.$user->id.'/create-transaction/')}}"> <i class='fa fa-plus-circle'></i> </a> 
-                    <a href="{{ asset('admin/edit_user/'.$user->id)}}"> <i class='fa fa-edit'></i> </a> 
-                    <a href="{{ asset('admin/delete_user/'.$user->id)}}"  onclick="javascript:return confirm('Are you sure you want to delete user?')"  data-toggle="tooltip" title="Delete Student"> <i class='fa fa-trash'></i>  </a> 
+
+                    <td>
+                    <a href="{{ asset('admin/edit-user/'.$user->id)}}"> <i class='fa fa-edit'></i> </a>
+                    <a href="{{ asset('admin/delete_user/'.$user->id)}}"  onclick="javascript:return confirm('Are you sure you want to delete user?')"  data-toggle="tooltip" title="Delete Student"> <i class='fa fa-trash'></i>  </a>
                     </td>
-                                    </tr>           
+                                    </tr>
                                 @endif
-       
+
                                    @endforeach
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->
-                          
+
                         </div>
                         <!-- /.panel-body -->
                     </div>

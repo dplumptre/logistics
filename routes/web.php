@@ -43,7 +43,7 @@ Auth::routes();
 |--------------------------------------------------------------------------
 |
 | Here is the control for ordinary users
-| 
+|
 |
 */
 
@@ -70,7 +70,7 @@ Route::prefix('home')->group(function () {
 
 
 
-    
+
     // edit equipments in a specific row
     Route::get('view-location/{location}/{equipment}/edit-equipment-in-location', 'HomeController@edit_equipment_in_location')->name('home.edit.equipment.in.location');
     Route::put('view-location/{location}/{equipment}/update-equipment-in-location', 'HomeController@update_equipment_in_location')->name('home.update.equipment.in.location');
@@ -126,15 +126,15 @@ Route::prefix('admin')->group(function () {
     Route::get('view-role', 'AdminController@view_role')->name('admin.view.role');
     Route::get('{role}/delete-role', 'AdminController@delete_role')->name('admin.delete.role');
 
-    
+
 
     Route::get('all_users', 'AdminController@all_users')->name('admin.all.users');
     Route::get('add-user', 'AdminController@add_user')->name('admin.add.user');
     Route::post('store_user', 'AdminController@store_user')->name('admin.store.user');
     Route::get('delete_user/{user}', 'AdminController@delete_user')->name('admin.delete.user');
-    Route::get('edit_user/{user}', 'AdminController@edit_user')->name('admin.edit.user');
-    Route::patch('update_user/{user}', 'AdminController@update_user')->name('admin.update.user');
-   
-  
+    Route::get('edit-user/{user}', 'AdminController@edit_user')->name('admin.edit.user');
+    Route::put('update_user/{user}', 'AdminController@update_user')->name('admin.update.user');
+
+
 
 });

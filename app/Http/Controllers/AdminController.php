@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use App\User_detail;
 class AdminController extends Controller
 {
 
@@ -18,7 +19,7 @@ class AdminController extends Controller
 
 
 //----------------------------------------------------------------------------
-//   USERS                                               
+//   USERS
 //----------------------------------------------------------------------------
 
 
@@ -38,13 +39,12 @@ class AdminController extends Controller
 
 
 
-    public function store_user(Request $request, User $user)
-    {
+    public function store_user(Request $request){
 
 
 
 
-       
+
 
         $this->validate($request, [
             'name' => 'required|string|max:50',
@@ -60,17 +60,17 @@ class AdminController extends Controller
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password =  bcrypt('gsc12345');;
+        $user->password =  bcrypt('oh12345');;
 
 
-      
+
 
         if(isset($request->email)){
             $check = User::where('email', '=', $request->email)->count();
             if ($check > 0 ) {
                 $request->session()->flash('message.content', 'User with the email already exist! Please enter a new email');
                 $request->session()->flash('message.level', 'danger');
-                return redirect('admin/create_user');
+                return redirect('admin/add-user');
             }
 
             else{
@@ -85,8 +85,8 @@ class AdminController extends Controller
 
 
         $user_id = $user->id;
-        
-        $user_details = new UserDetail;
+
+        $user_details = new User_detail;
         $user_details->phone = $request->phone;
         $user_details->country = $request->country;
         $user_details->address = $request->address;
@@ -97,15 +97,18 @@ class AdminController extends Controller
 
 
         if ($user_details->save()) {
-        
+
             $request->Session()->flash('message.content', 'User was successfully created!');
             $request->session()->flash('message.level', 'success');
-        
+
         }
 
         // return back();
         $users = User::orderBy('created_at', 'desc')->get();
-        return view('admin/all_users', compact('users'));
+       //
+
+
+       return redirect()->route('admin.all.users',compact('users'));
 
     }
 
@@ -121,14 +124,18 @@ class AdminController extends Controller
 
         $roles = Role::all();
        // return   $user->roles;
-        return view('admin/edit_user', compact('user','roles'));
+        return view('admin/edit-user', compact('user','roles'));
     }
+
+
+
+
 
 
 
     function update_user(User $user, Request $request)
     {
-       
+
 
  //dd($request);
 
@@ -139,11 +146,11 @@ class AdminController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:50',
             'email' => 'required|string|max:50',
-            'phone' => 'required|string|max:50',
-            'country' => 'required|string|max:50',
-            'address' => 'required|string',
-            'city' => 'required|string|max:50',
-            'gender' => 'required|string|max:10',
+            // 'phone' => 'required|string|max:50',
+            // 'country' => 'required|string|max:50',
+            // 'address' => 'required|string',
+            // 'city' => 'required|string|max:50',
+            // 'gender' => 'required|string|max:10',
             ]);
 
         $user->name = $request->name;
@@ -151,27 +158,27 @@ class AdminController extends Controller
         $user->save();
 
 
-        UserDetail::where('user_id', $user->id)
-        ->update([
-            'phone' => $request->phone,
-            'country' => $request->country,
-            'address' => $request->address,
-            'city' => $request->city,
-            'gender' => $request->gender,
-            'dob' => $request->dob,
-            
-            ]);
-         
+        // User_detaill::where('user_id', $user->id)
+        // ->update([
+        //     'phone' => $request->phone,
+        //     'country' => $request->country,
+        //     'address' => $request->address,
+        //     'city' => $request->city,
+        //     'gender' => $request->gender,
+        //     'dob' => $request->dob,
+
+        //     ]);
+
              $user->roles()->sync($request->checkbox);
-         
-       
+
+
 
             $request->session()->flash('message.content', 'User details was successfully updated!');
             $request->session()->flash('message.level', 'success');
 
             return redirect('admin/all_users');
 
-        
+
 
     }
 
@@ -189,7 +196,7 @@ class AdminController extends Controller
 
 
 //----------------------------------------------------------------------------
-//   ROLES                                                
+//   ROLES
 //----------------------------------------------------------------------------
 
 
@@ -198,63 +205,63 @@ class AdminController extends Controller
     $data = Role::all();
     return view('admin.view-role',compact('data'));
     }
-    
-    
+
+
     public function add_role()
     {
         return view('admin/add-role');
     }
-    
-    
-    
+
+
+
     public function store_role(Request $request)
     {
         $this->validate($request, [
             'role' => 'required'
             ]);
-    
+
          $p = Role::create([
             'role' => $request->role,
             'slug' => str_slug($request->role),
-         ]);   
+         ]);
         return redirect('admin/view-role');
     }
-    
-    
-    
+
+
+
     public function edit_role(Role $role)
     {
         return view('admin/edit-role',compact('role'));
     }
-    
-    
-    
-    
+
+
+
+
     public function update_role(Request $request,Role $role)
     {
         $this->validate($request, [
             'role' => 'required'
             ]);
-    
-    
+
+
             $role->role = $request->role;
             $role->slug = str_slug($request->role);
             $role->save();
-    
+
             $request->session()->flash('message.content', 'Role was successfully updated!');
             $request->session()->flash('message.level', 'success');
-     
+
         return redirect('admin/view-role');
     }
-    
-    
+
+
     public function delete_role(Role $role){
         $role->delete();
         return back();
     }
-    
-    
-    
+
+
+
 
 
 }

@@ -9,7 +9,7 @@ class CreateEquipmentTable extends Migration
     /**
      * Run the migrations.
      *
-     * @return void
+     * @return voids
      */
     public function up()
     {
